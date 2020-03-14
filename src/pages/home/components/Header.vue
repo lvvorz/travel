@@ -7,10 +7,12 @@
       <span class="iconfont">&#xe632;</span>
       输入城市、内容
     </div>
-    <div class="header-right">
-      {{this.city}}
-      <span class="iconfont down-icon">&#xe62d;</span>
-    </div>
+    <router-link to='/city'>
+      <div class="header-right">
+        {{this.city}}
+        <span class="iconfont down-icon">&#xe62d;</span>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -28,7 +30,7 @@ export default {
 
 .header {
   display: flex;
-  line-height: 0.86rem;
+  line-height: $headerHeight;
   color: #fff;
   background: $bgColor;
 
@@ -58,6 +60,7 @@ export default {
     float: right;
     width: 1.24rem;
     text-align: center;
+    color: #fff;
 
     .down-icon {
       font-size: 0.24rem;
