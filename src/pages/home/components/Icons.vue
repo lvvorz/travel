@@ -1,6 +1,6 @@
 <template>
   <div class="icons">
-    <swiper>
+    <swiper :options="swiperOption">
       <swiper-slide v-for="(page, index) of pages" :key="index">
         <div class="icon" v-for="item in page" :key="item.id">
           <div class="icon-img">
@@ -19,68 +19,18 @@ export default {
   name: "HomeIcons",
   data() {
     return {
-      iconList: [
-        {
-          id: "001",
-          imgUrl:
-            "https://imgs.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png",
-          desc: "景点门票"
-        },
-        {
-          id: "002",
-          imgUrl:
-            "https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20194/209908a8fc21779b485ab05f01835eaa.png",
-          desc: "植物园"
-        },
-        {
-          id: "003",
-          imgUrl:
-            "https://imgs.qunarzz.com/piao/fusion/1803/fa/2548667cb6e902.png",
-          desc: "东方明珠"
-        },
-        {
-          id: "004",
-          imgUrl:
-            "https://img1.qunarzz.com/piao/fusion/1810/50/26ffa31b56646402.png",
-          desc: "上海海昌"
-        },
-        {
-          id: "005",
-          imgUrl:
-            "https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/201912/9480e99a101564a22dfff0c4b9d0861c.png",
-          desc: "上海杜莎"
-        },
-        {
-          id: "006",
-          imgUrl:
-            "https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20194/3ef092d0a89ffddb7f781cda30c8ae49.png",
-          desc: "错峰出游"
-        },
-        {
-          id: "007",
-          imgUrl:
-            "https://imgs.qunarzz.com/piao/fusion/1803/76/eb88861d78fb9902.png",
-          desc: "上海海湾"
-        },
-        {
-          id: "008",
-          imgUrl:
-            "https://imgs.qunarzz.com/piao/fusion/1803/3e/86314b2af03b7502.png",
-          desc: "黄浦江游船"
-        },
-        {
-          id: "009",
-          imgUrl:
-            "https://imgs.qunarzz.com/piao/fusion/1803/48/cb72b99b71974c02.png",
-          desc: "休闲游玩"
-        }
-      ]
-    };
+      swiperOption: {
+        autoplay: false
+      }
+    }
+  },
+  props: {
+    list: Array
   },
   computed: {
     pages() {
       const pages = [];
-      this.iconList.forEach((item, index) => {
+      this.list.forEach((item, index) => {
         const page = Math.floor(index / 8);
         if (!pages[page]) {
           pages[page] = [];
@@ -101,7 +51,9 @@ export default {
   height: 0;
   padding-bottom: 50%;
 }
-
+.icons {
+  margin-top: .2rem;
+}
 .icon {
   position: relative;
   overflow: hidden;
