@@ -11,11 +11,15 @@ fastClick.attach(document.body)
 //轮播图
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
+//引入store
+import store from './store'
+
 Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
 Vue.config.productionTip = false
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')
