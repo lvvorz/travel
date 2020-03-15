@@ -31,8 +31,14 @@ export default {
   },
   data() {
     return {
-      touchStatus: false
+      touchStatus: false,
+      startY: 0,
+      timer: null
     };
+  },
+  //减少获取屏
+  updated() {
+    this.startY = this.$refs["A"][0].offsetTop;
   },
   methods: {
     handleLetterClick(e) {
@@ -44,14 +50,20 @@ export default {
     handleTouchMove(e) {
       if (this.touchStatus) {
         //A字母距顶部的高度
-        const startY = this.$refs['A'][0].offsetTop;
-        //手指位置高度
-        const touchY = e.touches[0].clientY - 79;
-        //字母位置，20为每个字母高度
-        const index = Math.floor((touchY - startY) / 20)
-        if (index >= 0 && index < this.letters.length) {
-          this.$emit('change', this.letters[index])
+        // const startY = this.$refs['A'][0].offsetTop;
+        //若本存在定时，则不可再点
+        if (this.timer) {
+          clearTimeout(this.timer);
         }
+        this.timer = setTimeout(() => {
+        //手指位置高度
+          const touchY = e.touches[0].clientY - 79;
+          //字母位置，20为每个字母高度
+          const index = Math.floor((touchY - this.startY) / 20);
+          if (index >= 0 && index < this.letters.length) {
+            this.$emit("change", this.letters[index]);
+          }
+        }, 16);
       }
     },
     handleTouchEnd() {
