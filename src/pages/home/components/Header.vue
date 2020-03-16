@@ -7,7 +7,7 @@
       <span class="iconfont">&#xe632;</span>
       输入城市、内容
     </div>
-    <router-link to='/city'>
+    <router-link to="/city">
       <div class="header-right">
         {{this.$store.state.city}}
         <span class="iconfont down-icon">&#xe62d;</span>
@@ -27,7 +27,7 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~@/assets/style/mixin.styl';
-@import '~@/assets/style/varibles.styl'
+@import '~@/assets/style/varibles.styl';
 
 .header {
   display: flex;
@@ -59,9 +59,9 @@ export default {
 
   .header-right {
     float: right;
-    overflow: hidden
-    white-space: nowrap
-    text-overflow: ellipsis
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     box-sizing: border-box;
     width: 1.24rem;
     text-align: center;
